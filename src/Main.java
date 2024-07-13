@@ -12,8 +12,9 @@ import java.util.Random;
 public class Main {
 
     public static double getMeanFromSample(List<List<String>> data) {
+    	
+    	//se calculeaza media din data
         int size = data.size();
-
         double mean =0;
         double sum=0;
        
@@ -31,6 +32,9 @@ public class Main {
 
     }
     public static double getStandardDeviationfromSample(List<List<String>> data) {
+    	
+    	//se calculeaza deviata din data 
+    	
         double mean= getMeanFromSample(data);
         int sum=0;
         int size=data.size();
@@ -52,7 +56,7 @@ public class Main {
 
     public static List<List<String>>processData(String file)
     {
-
+// se transforma fisierul intr-o lista de strigs
         try {
 
          
@@ -62,7 +66,7 @@ public class Main {
             System.out.println(csvReader);
             List<List<String>> records = new ArrayList<>();
 
-            // we are going to read data line by line
+        
             while ((nextRecord = csvReader.readNext()) != null) {
                 for (String cell : nextRecord) {
                     System.out.print(cell + "\t");
@@ -93,6 +97,7 @@ public class Main {
         }
 
     }
+    //se verifica daca sunt outliers
     public static boolean isOutlier(double number,double mean,double deviation) {
         if((number>mean+2*deviation)||(number<mean-2*deviation)){
 
@@ -101,6 +106,7 @@ public class Main {
         return false;
 
     }
+    //din lista de stringuri se selecteaza outliersurile,se adauga cele 3 coloane si se returneaza noua lista 
     public static List<List<String>> getOutliers(List<List<String>> data) {
         int size = data.size();
         double mean = getMeanFromSample(data);
@@ -122,6 +128,7 @@ public class Main {
 
         return newOutliers;
     }
+    //returnam outliers catre excell file
     public static void writeOutliersToCSV(List<List<String>> outliers, String outputFileName) {
         try (CSVWriter csvWriter = new CSVWriter(new FileWriter(outputFileName))) {
 
@@ -133,6 +140,10 @@ public class Main {
             e.printStackTrace();
         }
     }
+    
+    // luam outliers din file le procesam dupa sa rezulte un nou file
+    
+    
     public static void processOutliersForSubfolders(int nr_of_files) {
         String[] subfolders = {"LSE", "NASDAQ", "NYSE"};
         String currentDirectory = System.getProperty("user.dir");
