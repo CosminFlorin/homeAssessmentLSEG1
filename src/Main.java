@@ -16,7 +16,7 @@ public class Main {
 
         double mean =0;
         double sum=0;
-        System.out.println("valoarea numerelor dupa un punct random:");
+       
         for(int i=0;i<size;i++) {
             String nr =data.get(i).get(2);
             double value=Double.parseDouble(nr);
@@ -26,7 +26,7 @@ public class Main {
         }
 
         mean=sum/30;
-        System.out.println("media este :");
+        System.out.println("media este :"+mean);
         return mean;
 
     }
@@ -55,12 +55,8 @@ public class Main {
 
         try {
 
-            // Create an object of filereader
-            // class with CSV file as a parameter.
+         
             FileReader filereader = new FileReader(file);
-
-            // create csvReader object passing
-            // file reader as a parameter
             CSVReader csvReader = new CSVReader(filereader);
             String[] nextRecord;
             System.out.println(csvReader);
